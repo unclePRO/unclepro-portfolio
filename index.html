@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Architect Identity // unclePRO</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Syncopate:wght@700&display=swap');
+    
+    body, html { 
+      margin: 0; padding: 0; width: 100vw; height: 100vh; 
+      font-family: 'Space Grotesk', sans-serif; overflow: hidden; 
+      background-color: #010204; color: #e2e8f0;
+    }
+
+    #elemental-canvas { 
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+      z-index: 999; pointer-events: none; mix-blend-mode: screen;
+    }
+
+    /* Main Container */
+    .water-zone {
+      position: relative; width: 100%; height: 100vh; z-index: 5; 
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 40px; box-sizing: border-box;
+    }
+
+    .duality-header {
+      font-size: 1rem; color: #38bdf8; letter-spacing: 12px; margin-bottom: 60px;
+      text-transform: uppercase; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 20px;
+    }
+
+    .split-container { display: flex; width: 100%; max-width: 1200px; gap: 50px; }
+
+    .persona-card {
+      flex: 1; background: rgba(5, 15, 30, 0.4); border: 1px solid rgba(255, 255, 255, 0.03); 
+      border-radius: 20px; padding: 50px; transition: transform 0.6s ease, border-color 0.6s ease;
+      position: relative; z-index: 1;
+    }
+
+    .aviral-card:hover, .aviral-card.force-hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.2); background: rgba(5, 20, 35, 0.6); }
+    .unclepro-card:hover, .unclepro-card.force-hover { transform: translateY(-5px); border-color: rgba(147, 51, 234, 0.2); background: rgba(15, 5, 25, 0.6); }
+
+    .title-wrapper { position: relative; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 10px; z-index: 2; }
+    .card-title { position: relative; z-index: 10; font-family: 'Syncopate', sans-serif; font-size: 2.5rem; margin: 0; }
+
+    .aura-container {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 200%; height: 200%; z-index: -1; opacity: 0; pointer-events: none;
+      transition: opacity 1s ease;
+    }
+    .persona-card:hover .aura-container, .persona-card.force-hover .aura-container { opacity: 1; }
+
+    /* --- AVIRAL: TRUE FLUID WATER GOD AURA --- */
+    .aviral-card .card-title {
+      background: linear-gradient(to right, #e0f2fe, #7dd3fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 1px #020617; filter: drop-shadow(0 5px 15px rgba(0,0,0,1)); 
+      transition: transform 0.5s ease; 
+    }
+    .aviral-card:hover .card-title, .aviral-card.force-hover .card-title { transform: scale(1.05); }
+
+    .fluid-aura-1, .fluid-aura-2, .fluid-aura-3 {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      border-radius: 50%; filter: blur(25px); mix-blend-mode: screen;
+    }
+    .fluid-aura-1 { width: 140%; height: 160%; background: radial-gradient(ellipse, rgba(186, 230, 253, 0.9) 0%, transparent 60%); animation: water-pulse 4s infinite alternate ease-in-out; }
+    .fluid-aura-2 { width: 220%; height: 120%; background: radial-gradient(ellipse, rgba(56, 189, 248, 0.7) 0%, transparent 65%); animation: water-flow-1 6s infinite linear; }
+    .fluid-aura-3 { width: 130%; height: 220%; background: radial-gradient(ellipse, rgba(2, 132, 199, 0.6) 0%, transparent 65%); animation: water-flow-2 8s infinite linear reverse; }
+
+    @keyframes water-pulse { 0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; } 100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } }
+    @keyframes water-flow-1 { 0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); } 50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); } 100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); } }
+    @keyframes water-flow-2 { 0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); } 50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); } 100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); } }
+
+    /* --- UNCLEPRO: SLOW GLITCH & SHADOW AURA --- */
+    .unclepro-card .card-title { background: linear-gradient(to right, #c084fc, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: lowercase; }
+    
+    .unclepro-card:hover .card-title, .unclepro-card.force-hover .card-title {
+      background: none; color: #fff; -webkit-text-fill-color: #fff;
+      text-shadow: 0 0 15px #a855f7; animation: slow-text-vibrate 0.3s infinite;
+    }
+    .unclepro-card:hover .card-title::before, .unclepro-card:hover .card-title::after,
+    .unclepro-card.force-hover .card-title::before, .unclepro-card.force-hover .card-title::after {
+      content: 'unclePRO'; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: none; pointer-events: none; z-index: 10;
+    }
+    .unclepro-card:hover .card-title::before, .unclepro-card.force-hover .card-title::before { left: 2px; text-shadow: -2px 0 #ff00c1; animation: glitch-anim-1 4s infinite linear alternate-reverse; }
+    .unclepro-card:hover .card-title::after, .unclepro-card.force-hover .card-title::after { left: -2px; text-shadow: 2px 0 #00fff9, 2px 2px #a855f7; animation: glitch-anim-2 5s infinite linear alternate-reverse; }
+
+    .blob-uncle-1, .blob-uncle-2 {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, #000000 20%, #a855f7 60%, #ff00c1 100%); filter: blur(25px); mix-blend-mode: hard-light;
+    }
+    .blob-uncle-1 { animation: violent-morph-1 0.4s linear infinite; }
+    .blob-uncle-2 { background: linear-gradient(225deg, #000000 40%, #7e22ce, #000000); animation: violent-morph-2 0.5s linear infinite reverse; mix-blend-mode: normal; opacity: 0.8; }
+
+    @keyframes slow-text-vibrate { 0% { transform: translate(0) scale(1.02); } 50% { transform: translate(-1px, 1px) scale(1.02); } 100% { transform: translate(1px, -1px) scale(1.02); } }
+    @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 20% { clip-path: inset(60% 0 10% 0); } 40% { clip-path: inset(40% 0 50% 0); } 60% { clip-path: inset(80% 0 5% 0); } 80% { clip-path: inset(10% 0 70% 0); } 100% { clip-path: inset(30% 0 50% 0); } }
+    @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 20% { clip-path: inset(30% 0 20% 0); } 40% { clip-path: inset(70% 0 10% 0); } 60% { clip-path: inset(20% 0 50% 0); } 80% { clip-path: inset(50% 0 30% 0); } 100% { clip-path: inset(5% 0 80% 0); } }
+    @keyframes violent-morph-1 { 0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: scale(1) translate(0px, 1px); } 50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; transform: scale(1.05) translate(-1px, 0px); } 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: scale(1) translate(1px, -1px); } }
+    @keyframes violent-morph-2 { 0% { border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%; transform: scale(1.05) translate(-1px, 0px); } 50% { border-radius: 30% 70% 60% 40% / 60% 40% 60% 40%; transform: scale(1.1) translate(1px, -1px); } 100% { border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%; transform: scale(1.05) translate(0px, 1px); } }
+
+    .tag { font-family: monospace; font-size: 0.95rem; margin-bottom: 25px; opacity: 0.6; transition: opacity 0.5s;}
+    .aviral-card .tag { color: #93c5fd; }
+    .unclepro-card .tag { color: #fbcfe8; }
+    .persona-card:hover .tag, .persona-card.force-hover .tag { opacity: 1; }
+    .persona-card p { color: #94a3b8; line-height: 1.8; font-size: 1.05rem; }
+
+    @media(max-width: 900px) { .split-container { flex-direction: column; } .persona-card { padding: 30px; } .water-zone { height: auto; padding: 80px 20px;} }
+  </style>
+</head>
+<body>
+  <canvas id="elemental-canvas"></canvas>
+  
+  <div class="water-zone" id="zone-water">
+    <div class="duality-header">System Architect Identity</div>
+    <div class="split-container">
+      
+      <div class="persona-card aviral-card" id="card-aviral">
+        <div class="title-wrapper">
+          <div class="aura-container">
+            <div class="fluid-aura-1"></div>
+            <div class="fluid-aura-2"></div>
+            <div class="fluid-aura-3"></div>
+          </div>
+          <h2 class="card-title">AVIRAL</h2>
+        </div>
+        <div class="tag">> The Structured Core</div>
+        <p>The academic foundation. A CSE-AI undergraduate specializing in backend architecture, Node.js databases, and algorithmic logic. This is the calculated, professional core that designs scalable systems and maps complex data flows with precision before a single line of code is written.</p>
+      </div>
+      
+      <div class="persona-card unclepro-card" id="card-unclepro">
+        <div class="title-wrapper">
+          <div class="aura-container">
+            <div class="blob-uncle-1"></div>
+            <div class="blob-uncle-2"></div>
+          </div>
+          <h2 class="card-title">unclePRO</h2>
+        </div>
+        <div class="tag">> The Creative Override</div>
+        <p>The digital alias and creative override. Fueled almost exclusively by White Monster energy, this is the online identity dedicated to Linux fanaticism and system customization. Whether engineering hyper-customized desktop environments, writing complex Bash scripts, or dominating Euro Truck Simulator 2, this protocol thrives in absolute, unhinged creativity.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('elemental-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let particles = [];
+    const MAX_PARTICLES = 250; 
+    let activeZone = 'ambient'; 
+
+    const cardAviral = document.getElementById('card-aviral');
+    const cardUncle = document.getElementById('card-unclepro');
+
+    // Auto trigger presentation on load
+    window.onload = () => {
+      cardAviral.classList.add('force-hover'); 
+      cardUncle.classList.add('force-hover');
+      
+      const aRect = cardAviral.getBoundingClientRect(); 
+      const uRect = cardUncle.getBoundingClientRect();
+      
+      pushParticles(aRect.left + aRect.width/2, aRect.top + aRect.height/4, 'vapor', 25, true);
+      pushParticles(uRect.left + uRect.width/2, uRect.top + uRect.height/4, 'aura', 35, true);
+      
+      setTimeout(() => { 
+        cardAviral.classList.remove('force-hover'); 
+        cardUncle.classList.remove('force-hover'); 
+      }, 2000);
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      if(activeZone === 'ambient' && Math.random() > 0.5) pushParticles(e.clientX, e.clientY, activeZone, 1);
+    });
+
+    cardAviral.addEventListener('mouseenter', (e) => { activeZone = 'vapor'; pushParticles(e.clientX, e.clientY, 'vapor', 20, true); });
+    cardAviral.addEventListener('mouseleave', () => { activeZone = 'ambient'; });
+    cardAviral.addEventListener('mousemove', (e) => { if(Math.random()>0.3) pushParticles(e.clientX, e.clientY, 'vapor', 1); });
+    
+    cardUncle.addEventListener('mouseenter', (e) => { activeZone = 'aura'; pushParticles(e.clientX, e.clientY, 'aura', 30, true); });
+    cardUncle.addEventListener('mouseleave', () => { activeZone = 'ambient'; });
+    cardUncle.addEventListener('mousemove', (e) => { if(Math.random()>0.3) pushParticles(e.clientX, e.clientY, 'aura', 2); });
+
+    window.addEventListener('mousedown', (e) => { pushParticles(e.clientX, e.clientY, activeZone === 'ambient' ? 'vapor' : activeZone, 15, true); });
+
+    function pushParticles(x, y, theme, count, isBurst = false) {
+      for (let i = 0; i < count; i++) {
+        if (particles.length >= MAX_PARTICLES) particles.shift(); 
+        particles.push(new Particle(x, y, theme, isBurst));
+      }
+    }
+
+    class Particle {
+      constructor(x, y, theme, isBurst = false) {
+        this.x = x; this.y = y; this.theme = theme; this.life = 1;
+        this.decay = Math.random() * 0.01 + 0.005; 
+        
+        if (theme === 'vapor') {
+          this.size = Math.random() * 15 + 10;
+          this.vx = (Math.random() - 0.5) * (isBurst ? 6 : 1.5);
+          this.vy = Math.random() * -2 - 1; 
+          this.decay = Math.random() * 0.02 + 0.01;
+        } 
+        else if (theme === 'aura') {
+          this.size = Math.random() * 10 + 4;
+          this.vx = (Math.random() - 0.5) * (isBurst ? 8 : 2); 
+          this.vy = (Math.random() - 0.5) * (isBurst ? 8 : 2) - 1.5; 
+          const rand = Math.random();
+          if (rand > 0.6) this.hue = Math.random() * 20 + 260; 
+          else if (rand > 0.3) this.hue = Math.random() * 30 + 190; 
+          else this.hue = -1; 
+        }
+        else {
+          this.size = Math.random() * 2 + 1;
+          this.vx = (Math.random() - 0.5) * 0.5;
+          this.vy = Math.random() * -0.5 - 0.2;
+          this.hue = 220;
+        }
+      }
+
+      update() {
+        this.x += this.vx; this.y += this.vy; this.life -= this.decay;
+        if (this.theme === 'vapor') {
+          this.size += 0.3; this.x += Math.sin(this.life * 5) * 1; 
+        } else if (this.theme === 'aura') {
+          this.x += (Math.random() - 0.5) * 2; this.size -= 0.05;
+        }
+      }
+
+      draw() {
+        if (this.size <= 0 || this.life <= 0 || this.y < -50 || this.y > height + 50) return;
+        ctx.beginPath();
+        
+        if (this.theme === 'vapor') {
+          ctx.fillStyle = `rgba(255, 255, 255, ${this.life * 0.4})`;
+          ctx.shadowBlur = 15; ctx.shadowColor = `rgba(224, 242, 254, ${this.life * 0.5})`;
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+          
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(148, 163, 184, ${this.life * 0.2})`;
+          ctx.arc(this.x, this.y + this.size*0.2, this.size*0.8, 0, Math.PI * 2); ctx.fill();
+        } 
+        else if (this.theme === 'aura') {
+          if (this.hue === -1) {
+            ctx.fillStyle = `rgba(5, 0, 10, ${this.life})`;
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.strokeStyle = `rgba(147, 51, 234, ${this.life * 0.4})`;
+            ctx.lineWidth = 1; ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.stroke();
+          } else {
+            ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${this.life * 0.1})`;
+            ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.fillStyle = `hsla(${this.hue}, 100%, 70%, ${this.life * 0.8})`;
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+          }
+        }
+        else { 
+          ctx.fillStyle = `hsla(${this.hue}, 80%, 60%, ${this.life * 0.15})`;
+          ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.fillStyle = `hsla(${this.hue}, 80%, 70%, ${this.life * 0.8})`;
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+      if (Math.random() > 0.9) pushParticles(Math.random() * width, height + 10, 'ambient', 1);
+      
+      for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].update(); particles[i].draw();
+        if (particles[i].life <= 0 || particles[i].size <= 0) particles.splice(i, 1);
+      }
+      requestAnimationFrame(render);
+    }
+    
+    render();
+  </script>
+</body>
+</html>
