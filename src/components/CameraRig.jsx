@@ -9,8 +9,9 @@ export default function CameraRig() {
 
   useFrame(() => {
     const t = scrollData.offset
-    const point = curve.getPointAt(t)
-    const lookAhead = curve.getPointAt(Math.min(t + 0.01, 1))
+    const safeT = Math.min(t, 0.99)
+    const point = curve.getPointAt(safeT)
+    const lookAhead = curve.getPointAt(safeT + 0.01)
 
     camera.position.copy(point)
     camera.lookAt(lookAhead)

@@ -27,9 +27,9 @@ export default function Background () {
                 distance={450000}
                 sunPosition={sunPos}
                 inclination={0.9}
-                azimuth={0.9}
+                azimuth={0.001}
                 turbidity={12}
-                rayleigh={0.03}
+                rayleigh={0.5}
                 mieCoefficient={0.00001}
                 mieDirectionalG={0.5}
             />
