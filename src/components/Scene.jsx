@@ -7,7 +7,7 @@ export default function Scene() {
 
   return (
     <>            
-      <ScrollControls pages={4} damping={0.1}>
+      <ScrollControls pages={4}>
         <CameraRig />
         <ScrollLogic />
       </ScrollControls>

@@ -24,9 +24,9 @@ export default function ScrollLogic() {
 
     const scrollData = useScroll();
 
-    const page1Point = curve.getPointAt(0.019); // Center of 0.00 - 0.25
-    const page2Point = curve.getPointAt(0.37); // Center of 0.25 - 0.50
-    const page3Point = curve.getPointAt(0.62); // Center of 0.50 - 0.75
+    const page1Point = curve.getPointAt(0.019);
+    const page2Point = curve.getPointAt(0.37);
+    const page3Point = curve.getPointAt(0.62);
     const page4Point = curve.getPointAt(0.87);
 
     useFrame(() => {
