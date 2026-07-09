@@ -12,7 +12,7 @@ export default function ApplyStyle( ref, localScroll, home = false ) {
         const rotY = localScroll * 0;
         const rotZ = localScroll * 0;
         const blur = localScroll * 0;
-        const opacity = 1 - localScroll
+        const opacity = 1 - localScroll;
         const letterSpread = localScroll * 10;
         const scale = 0.7 + (localScroll * 2);
 
