@@ -4,10 +4,10 @@ import { useRef } from 'react'
 import ApplyStyle from './ApplyStyle';
 import { curve } from './Curve';
 import Background from './Background';
-import Page1 from './pages/page1';
-import Page2 from './pages/page2';
-import Page3 from './pages/page3';
-import Page4 from './pages/page4';
+import Page1 from './pages/Page1';
+import Page2 from './pages/Page2';
+import Page3 from './pages/Page3';
+import Page4 from './pages/Page4';
 export default function ScrollLogic() {
     const sunRef = useRef();
 
