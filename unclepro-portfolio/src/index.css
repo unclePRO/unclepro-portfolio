@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-/* Keep your 3D canvas resets below it */
 html, body, #root {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden; /* 🔒 This is the padlock that kills the upward slide! */
   background-color: #050505;
 }
