@@ -2,7 +2,7 @@ export default function ApplyStyle( ref, localScroll, home = false ) {
 
     if(ref.current) {
         if (!home && localScroll == 0) {
-            ref.current.style.display = 'none'
+            ref.current.style.display = 'flex'
             return;
         } else {
             ref.current.style.display = 'flex'
