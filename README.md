@@ -1,16 +1,20 @@
-# React + Vite
+# unclePRO Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website designed with a dark, terminal-inspired aesthetic. It features an interactive 3D background and serves as a central hub for my projects, developer metrics, and contact information.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+*   **Frontend:** React
+*   **Styling:** Tailwind CSS (v4)
+*   **3D Graphics:** Three.js & React Three Fiber
+*   **Typography:** VT323 font
+*   **Icons:** `react-icons`
 
-## React Compiler
+## Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The layout is divided into four main sections:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*   **Page 1:** Introduction, interactive 3D background, and quick social links.
+*   **Page 2:** Live GitHub and LeetCode statistics.
+*   **Page 3:** A bento-box layout displaying my active tech stack alongside featured projects like Potify and my Wayland/Hyprland dotfiles.
+*   **Page 4:** Contact links including email, LinkedIn, Ko-fi, and a click-to-copy Discord ID feature, styled with CSS sonar animations.
