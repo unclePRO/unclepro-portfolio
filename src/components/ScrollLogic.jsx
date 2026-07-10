@@ -35,15 +35,15 @@ export default function ScrollLogic() {
         if (page3GroupRef.current) page3GroupRef.current.position.copy(page3Point);
         if (page4GroupRef.current) page4GroupRef.current.position.copy(page4Point);
 
-        const scroll1 = scrollData.range(0, 1/4);
-        const scroll2 = scrollData.range(1/4, 1/4);
-        const scroll3 = scrollData.range(2/4, 1/4);
-        const scroll4 = scrollData.range(3/4, 1/4);
+        const scroll1 = scrollData.range(0, 1);
+        const scroll2 = scrollData.range(0.11, 0.89);
+        const scroll3 = scrollData.range(0.34, 0.56);
+        const scroll4 = scrollData.range(0.569, 1 - 0.569);
 
-        // ApplyStyle(page1Ref, scroll1, true);
-        // ApplyStyle(page2Ref, scroll2);
-        // ApplyStyle(page3Ref, scroll3);
-        // ApplyStyle(page4Ref, scroll4);
+        ApplyStyle(page1Ref, scroll1, true);
+        ApplyStyle(page2Ref, scroll2);
+        ApplyStyle(page3Ref, scroll3);
+        ApplyStyle(page4Ref, scroll4);
     })
 
     return (
@@ -51,7 +51,7 @@ export default function ScrollLogic() {
             <Background/>
 
             <group ref={page1GroupRef}>
-                <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none">
+                <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none overflow-hidden">
                     <div ref={page1Ref}>
                         <Page1/>
                     </div>
@@ -59,7 +59,7 @@ export default function ScrollLogic() {
             </group>
 
             <group ref={page2GroupRef}>
-                <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none">
+                <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none overflow-hidden">
                     <div ref={page2Ref}>
                         <Page2/>
                     </div>
@@ -67,7 +67,7 @@ export default function ScrollLogic() {
             </group>
 
             <group ref={page3GroupRef}>
-                <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none">
+                <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none overflow-hidden">
                     <div ref={page3Ref}>
                         <Page3/>
                     </div>
@@ -75,7 +75,7 @@ export default function ScrollLogic() {
             </group>
 
             <group ref={page4GroupRef}>
-                <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none">
+                <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none overflow-hidden">
                     <div ref={page4Ref}>
                         <Page4/>
                     </div>
