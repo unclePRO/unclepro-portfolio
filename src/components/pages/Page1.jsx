@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaAngleDoubleDown, FaLinkedin } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import HackerShuffle from '../ext/HackerShuffle';
 import DrawOutlineButton from '../ext/DrawOutlineButton'
@@ -57,6 +57,11 @@ export default function Page1() {
                         <Icon />
                     </a>
                 ))}
+            </div>
+
+            <div className="absolute bottom-30 flex flex-col items-center gap-1 text-white/30 animate-bounce cursor-default pointer-events-none">
+                <span className="font-mono text-xs tracking-widest uppercase">Scroll</span>
+                <FaAngleDoubleDown className="text-sm" />
             </div>
             
         </div>
