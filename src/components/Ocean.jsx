@@ -11,7 +11,7 @@ export default function Ocean({ sunPos }) {
         
     const rawTexture = useLoader(
         THREE.TextureLoader, 
-        'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/waternormals.jpg'
+        '/waternormals.jpg'
     );
     
     const waterNormals = useMemo(() => {

@@ -66,7 +66,7 @@ export default function HackerShuffle({
     return (
         <p
             onMouseEnter={triggerOnHover ? startShuffle : undefined}
-            className={`uppercase tracking-wider select-none text-[5rem] leading-none text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.6)] cursor-none ${className}`}
+            className={`uppercase tracking-wider select-none text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] leading-none text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.6)] cursor-pointer max-w-full text-center ${className}`}
         >
             {displayText}
         </p>

@@ -1,9 +1,9 @@
 import { 
-    SiNextdotjs, SiReact, SiTailwindcss, SiTypescript, SiPython, 
+    SiNextdotjs, SiReact, SiTailwindcss, SiPython, 
     SiNodedotjs, SiJavascript, SiGnubash, SiC, SiThreedotjs, 
     SiDiscord, SiMongodb, SiLinux 
 } from "react-icons/si";
-import { FaGithub, FaExternalLinkAlt, FaImage } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 // Quick array to map over skills cleanly
 const skills = [
@@ -23,19 +23,21 @@ const skills = [
 
 export default function Page3() {
     return (
-        <div className="relative w-[70vw] h-[70vh] bg-black/80 flex flex-col items-center pointer-events-auto p-8 border border-cyan-500/20 backdrop-blur-md rounded overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.1)]">
+        <div className="relative w-[90vw] md:w-[80vw] lg:w-[70vw] h-[85vh] lg:h-[70vh] bg-black/80 flex flex-col items-center pointer-events-auto p-6 md:p-8 border border-cyan-500/20 backdrop-blur-md rounded-3xl overflow-y-auto lg:overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.1)] custom-scrollbar">
             
-            <h1 className="text-3xl text-white tracking-widest uppercase mb-6 text-center">
+            <h1 className="text-3xl text-white tracking-widest uppercase mb-4 md:mb-6 text-center shrink-0">
                 My skills
             </h1>
 
-            <div className="flex flex-col lg:flex-row gap-6 w-full h-[calc(100%-4rem)]">
+            <div className="flex flex-col lg:flex-row gap-6 w-full h-auto lg:h-[calc(100%-4rem)] min-h-0">
                 
-                {/* LEFT: Skills*/}
-                <div className="lg:w-1/2 h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-6 overflow-y-auto">
-                    <h2 className="text-white/60 font-mono uppercase tracking-widest text-sm mb-4 border-b border-white/10 pb-2">Languages and frameworks</h2>
+                {/* LEFT: Skills */}
+                <div className="w-full lg:w-1/2 h-auto lg:h-full flex flex-col bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6 overflow-y-auto custom-scrollbar">
+                    <h2 className="text-white/60 font-mono uppercase tracking-widest text-sm mb-4 border-b border-white/10 pb-2">
+                        Languages and frameworks
+                    </h2>
                     
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 scrollbar-thumb-black scrollbar-track-gray-200">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
                         {skills.map((skill) => (
                             <div 
                                 key={skill.name} 
@@ -50,11 +52,11 @@ export default function Page3() {
                     </div>
                 </div>
 
-                {/* RIGHT: Projects*/}
-                <div className="lg:w-1/2 h-full flex flex-col gap-6">
+                {/* RIGHT: Projects */}
+                <div className="w-full lg:w-1/2 h-auto lg:h-full flex flex-col gap-4 md:gap-6">
                     
                     {/* Potify */}
-                    <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all relative overflow-hidden">                        
+                    <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all relative overflow-hidden">                        
                         <div>
                             <div className="flex justify-between items-start mb-2">
                                 <h2 className="text-2xl text-white font-bold tracking-wider">Potify</h2>
@@ -68,13 +70,13 @@ export default function Page3() {
                                 </div>
                             </div>
                             <p className="text-sm text-white/60 font-mono leading-relaxed max-w-[90%]">
-                                [WIP] A full-stack music streaming platform designed for seamless audio playback. Tried to make it without any vibecoding.
+                                [WIP] A full-stack music streaming platform designed for seamless audio playback. Built with focus on clean architecture and performance.
                             </p>
                         </div>
                     </div>
 
                     {/* Hyprland Rice */}
-                    <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all">
+                    <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6 flex flex-col justify-between group hover:border-cyan-500/30 transition-all">
                         <div>
                             <div className="flex justify-between items-start mb-2">
                                 <h2 className="text-2xl text-white font-bold tracking-wider">Glassy Cyberpunk Rice</h2>
@@ -86,13 +88,11 @@ export default function Page3() {
                                 Custom Fedora 43 desktop environment configuration utilizing Hyprland and Waybar. Focuses on minimal, glassy aesthetics.
                             </p>
                         </div>
-                        
-                        
                     </div>
 
                 </div>
             </div>
             
         </div> 
-    )
+    );
 }

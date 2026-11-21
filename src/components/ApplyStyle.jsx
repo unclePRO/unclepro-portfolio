@@ -1,29 +1,29 @@
-export default function ApplyStyle( ref, localScroll, home = false ) {
+export default function ApplyStyle(ref, dist) {
+    if (!ref?.current) return;
 
-    if(ref.current) {
-        if (!home && localScroll == 0) {
-            ref.current.style.display = 'none'
-            return;
-        } else {
-            ref.current.style.display = 'flex'
+    // If the card is behind the camera or too close (avoids CSS 3D matrix explosion and camera clipping),
+    // or if the card is far away, completely remove it from rendering.
+    if (dist <= 2 || dist >= 45) {
+        if (ref.current.style.display !== 'none') {
+            ref.current.style.display = 'none';
         }
-        // const zPos = localScroll * 400;
-        // const rotX = localScroll * 0;
-        // const rotY = localScroll * 0;
-        // const rotZ = localScroll * 0;
-        // const blur = localScroll * 0;
-        // const opacity = 1 - localScroll;
-        // const letterSpread = localScroll * 10;
-        // const scale = 0.7 + (localScroll * 2);
-
-        // ref.current.style.transform = 
-        //     `translate3d(0px, 0px, ${zPos}px) 
-        //     rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)
-        //     scale(${scale})`;
-
-        // ref.current.style.opacity = opacity;
-        // ref.current.style.filter = `blur(${blur}px)`
-        // ref.current.style.letterSpacing = `${letterSpread}px`
+        return;
     }
-    return;
+
+    if (ref.current.style.display !== 'flex') {
+        ref.current.style.display = 'flex';
+    }
+
+    // At nominal target station distance (~9.5 to 10 units), opacity is 1.0.
+    let opacity = 1;
+    if (dist < 7) {
+        // Smoothly fade out before camera gets close to prevent visual collision
+        opacity = Math.max(0, Math.min(1, (dist - 2) / 5));
+    } else if (dist > 16) {
+        // Smoothly fade in as camera approaches the station
+        opacity = Math.max(0, Math.min(1, (45 - dist) / 29));
+    }
+
+    ref.current.style.opacity = opacity.toFixed(3);
+    ref.current.style.pointerEvents = opacity > 0.6 ? 'auto' : 'none';
 }

@@ -1,7 +1,7 @@
 import { FaGithub, FaAngleDoubleDown, FaLinkedin } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import HackerShuffle from '../ext/HackerShuffle';
-import DrawOutlineButton from '../ext/DrawOutlineButton'
+import DrawOutlineButton from '../ext/DrawOutlineButton';
 import { useState } from 'react';
 
 const links = [
@@ -15,23 +15,23 @@ export default function Page1() {
 
     if (hidePage) {
         return (
-            <div className='relative w-[70vw] h-[70vh] flex flex-col justify-between items-center rounded-3xl pointer-events-auto p-8 border border-cyan-500/20 backdrop-blur-md overflow-hidden'>
-                <div className="absolute top-10 left-10">
+            <div className='relative w-[90vw] md:w-[80vw] lg:w-[70vw] h-[85vh] lg:h-[70vh] flex flex-col justify-between items-center rounded-3xl pointer-events-auto p-6 md:p-8 border border-cyan-500/20 backdrop-blur-md overflow-hidden'>
+                <div className="absolute top-6 left-6 md:top-10 md:left-10 z-20">
                     <DrawOutlineButton onClick={() => setHidePage(false)}>close</DrawOutlineButton>
                 </div>
             </div>
-        )
+        );
     }
-    return (
-        <div className="relative w-[70vw] h-[70vh] bg-black/70 flex flex-col justify-between items-center rounded-3xl pointer-events-auto p-8 border border-cyan-500/20 backdrop-blur-md overflow-hidden">
 
-            <div className="absolute top-10 left-10">
+    return (
+        <div className="relative w-[90vw] md:w-[80vw] lg:w-[70vw] h-[85vh] lg:h-[70vh] bg-black/80 flex flex-col justify-between items-center rounded-3xl pointer-events-auto p-6 md:p-8 border border-cyan-500/20 backdrop-blur-md overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.1)]">
+
+            <div className="absolute top-6 left-6 md:top-10 md:left-10 z-20">
                 <DrawOutlineButton onClick={() => setHidePage(true)}>view</DrawOutlineButton>
             </div>
 
-            <p className='text-xs tracking-widest text-cyan-500/50'>
-                Youkoso
-            </p>
+            {/* Top balance spacer */}
+            <div className="w-full h-8 pointer-events-none" />
 
             {/* Intro */}
             <div className="relative w-full flex-col flex justify-center items-center my-4">
@@ -39,18 +39,18 @@ export default function Page1() {
                     text="unclePRO" 
                     duration={0.5} 
                     triggerOnHover={true}
-                    className='hover:scale-150 duration-10000'
+                    className="hover:scale-105 duration-500 transition-transform"
                 />
                 
-                <div className='w-full max-w-2xl text-center z-10 px-4'>
-                    <p className='text-sm md:text-base tracking-wide opacity-50 hover:opacity-100 hover:scale-102 duration-500 text-cyan-500 leading-relaxed'>
-                        Yare Yare daze. The web needs better architecture.
+                <div className="w-full max-w-2xl text-center z-10 px-4 mt-3">
+                    <p className="text-sm md:text-base tracking-wide opacity-60 hover:opacity-100 hover:scale-[1.02] duration-300 text-cyan-400 leading-relaxed font-mono">
+                        Because &apos;good enough&apos; eventually breaks.
                     </p>
                 </div>
             </div>
 
             {/* Bottom Nav Links */}
-            <div className='flex gap-6 z-10'>
+            <div className="flex gap-6 z-10 mb-2">
                 {links.map(({ icon: Icon, href, label }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                        className="text-cyan-500/60 hover:text-cyan-400 hover:scale-110 drop-shadow-[0_0_5px_rgba(34,211,238,0)] hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.5)] transition-all text-3xl">
@@ -59,7 +59,7 @@ export default function Page1() {
                 ))}
             </div>
 
-            <div className="absolute bottom-30 flex flex-col items-center gap-1 text-white/30 animate-bounce cursor-default pointer-events-none">
+            <div className="absolute bottom-20 md:bottom-24 flex flex-col items-center gap-1 text-white/30 animate-bounce cursor-default pointer-events-none">
                 <span className="font-mono text-xs tracking-widest uppercase">Scroll</span>
                 <FaAngleDoubleDown className="text-sm" />
             </div>

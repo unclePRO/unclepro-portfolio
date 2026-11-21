@@ -1,6 +1,6 @@
 import { Html, useScroll } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useRef } from 'react'
+import { useRef } from 'react';
 import ApplyStyle from './ApplyStyle';
 import { curve } from './Curve';
 import Background from './Background';
@@ -8,10 +8,8 @@ import Page1 from './pages/Page1';
 import Page2 from './pages/Page2';
 import Page3 from './pages/Page3';
 import Page4 from './pages/Page4';
+
 export default function ScrollLogic() {
-    const sunRef = useRef();
-
-
     const page1GroupRef = useRef();
     const page2GroupRef = useRef();
     const page3GroupRef = useRef();
@@ -23,6 +21,7 @@ export default function ScrollLogic() {
     const page4Ref = useRef();
 
     const scrollData = useScroll();
+    const { camera } = useThree();
 
     const page1Point = curve.getPointAt(0.019);
     const page2Point = curve.getPointAt(0.37);
@@ -35,16 +34,17 @@ export default function ScrollLogic() {
         if (page3GroupRef.current) page3GroupRef.current.position.copy(page3Point);
         if (page4GroupRef.current) page4GroupRef.current.position.copy(page4Point);
 
-        const scroll1 = scrollData.range(0, 1);
-        const scroll2 = scrollData.range(0.11, 0.89);
-        const scroll3 = scrollData.range(0.34, 0.56);
-        const scroll4 = scrollData.range(0.569, 1 - 0.569);
+        const camZ = camera.position.z;
+        const dist1 = camZ - page1Point.z;
+        const dist2 = camZ - page2Point.z;
+        const dist3 = camZ - page3Point.z;
+        const dist4 = camZ - page4Point.z;
 
-        ApplyStyle(page1Ref, scroll1, true);
-        ApplyStyle(page2Ref, scroll2);
-        ApplyStyle(page3Ref, scroll3);
-        ApplyStyle(page4Ref, scroll4);
-    })
+        ApplyStyle(page1Ref, dist1);
+        ApplyStyle(page2Ref, dist2);
+        ApplyStyle(page3Ref, dist3);
+        ApplyStyle(page4Ref, dist4);
+    });
 
     return (
         <>  
@@ -52,7 +52,7 @@ export default function ScrollLogic() {
 
             <group ref={page1GroupRef}>
                 <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none overflow-hidden">
-                    <div ref={page1Ref}>
+                    <div ref={page1Ref} className="transition-opacity duration-200">
                         <Page1/>
                     </div>
                 </Html>
@@ -60,7 +60,7 @@ export default function ScrollLogic() {
 
             <group ref={page2GroupRef}>
                 <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none overflow-hidden">
-                    <div ref={page2Ref}>
+                    <div ref={page2Ref} className="transition-opacity duration-200">
                         <Page2/>
                     </div>
                 </Html>
@@ -68,7 +68,7 @@ export default function ScrollLogic() {
 
             <group ref={page3GroupRef}>
                 <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none overflow-hidden">
-                    <div ref={page3Ref}>
+                    <div ref={page3Ref} className="transition-opacity duration-200">
                         <Page3/>
                     </div>
                 </Html>
@@ -76,11 +76,11 @@ export default function ScrollLogic() {
 
             <group ref={page4GroupRef}>
                 <Html transform portal={{ current: scrollData.fixed }} occlude={false} className="pointer-events-none overflow-hidden">
-                    <div ref={page4Ref}>
+                    <div ref={page4Ref} className="transition-opacity duration-200">
                         <Page4/>
                     </div>
                 </Html>
             </group>
         </>
-        );
+    );
 }
