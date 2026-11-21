@@ -62,7 +62,11 @@ export default function LeetCodeCalendar({ username }) {
             });
     }, [username]);
 
-    if (loading) return <p className="text-cyan-400 animate-pulse font-mono tracking-widest text-sm">Decrypting LeetCode Data...</p>;
+    if (loading) return (
+        <div className="w-full flex justify-center items-center py-4">
+            <p className="text-cyan-400 animate-pulse font-mono tracking-widest text-sm text-center">Decrypting LeetCode Data...</p>
+        </div>
+    );
 
     // 2. Dynamically change the label text based on the error state
     const labelText = error 
@@ -70,18 +74,16 @@ export default function LeetCodeCalendar({ username }) {
         : '{{count}} submissions made in the past year';
 
     return (
-        <div className="w-full pt-4 [&_svg]:overflow-visible [&_text]:translate-y-[4px] [&_text]:text-[14px]">
-            <ActivityCalendar 
-                data={data} 
-                colorScheme="dark"
-                theme={{
-                    dark: ['#161b22', '#4d3d00', '#806600', '#b38f00', '#e6b800']
-                }}
-                labels={{
-                    totalCount: labelText,
-                }}
-                className={error ? "text-red-400" : "text-white/90"}
-            />
-        </div>
+        <ActivityCalendar 
+            data={data} 
+            colorScheme="dark"
+            theme={{
+                dark: ['#161b22', '#4d3d00', '#806600', '#b38f00', '#e6b800']
+            }}
+            labels={{
+                totalCount: labelText,
+            }}
+            className={error ? "text-red-400" : "text-white"}
+        />
     );
 }

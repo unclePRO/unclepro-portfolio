@@ -7,7 +7,13 @@ export default function Scene() {
 
   return (
     <>            
-      <ScrollControls pages={4}>
+      <ScrollControls 
+        pages={4}
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'rgba(0, 0, 0, 0.45) transparent',
+        }}
+      >
         <CameraRig />
         <ScrollLogic />
       </ScrollControls>

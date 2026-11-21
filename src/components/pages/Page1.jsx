@@ -24,7 +24,7 @@ export default function Page1() {
     }
 
     return (
-        <div className="relative w-[90vw] md:w-[80vw] lg:w-[70vw] h-[85vh] lg:h-[70vh] bg-black/80 flex flex-col justify-between items-center rounded-3xl pointer-events-auto p-6 md:p-8 border border-cyan-500/20 backdrop-blur-md overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.1)]">
+        <div className="relative w-[90vw] md:w-[80vw] lg:w-[70vw] h-[85vh] lg:h-[70vh] bg-black/40 flex flex-col justify-between items-center rounded-3xl pointer-events-auto p-6 md:p-8 border border-cyan-500/20 backdrop-blur-md overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.1)]">
 
             <div className="absolute top-6 left-6 md:top-10 md:left-10 z-20">
                 <DrawOutlineButton onClick={() => setHidePage(true)}>view</DrawOutlineButton>

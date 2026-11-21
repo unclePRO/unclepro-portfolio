@@ -13,7 +13,7 @@ export default function Page2() {
             </a>
             
             {/* GitHub Calendar Container with horizontal scroll safety */}
-            <div className="w-full max-w-full overflow-x-auto flex justify-center py-1 [&_article]:!overflow-visible [&_svg]:!overflow-visible [&_text]:!translate-y-[6px] custom-scrollbar">
+            <div className="w-full max-w-full overflow-x-auto flex justify-center items-center py-1 [&_article]:!overflow-visible [&_article]:mx-auto [&_svg]:!overflow-visible [&_text]:!translate-y-[6px] custom-scrollbar">
                 <GitHubCalendar 
                     username="unclepro" 
                     colorScheme="dark"
@@ -35,7 +35,7 @@ export default function Page2() {
             </a>
 
             {/* LeetCode Calendar Container with horizontal scroll safety */}
-            <div className="w-full max-w-full overflow-x-auto flex justify-center py-1 [&_article]:overflow-visible [&_svg]:overflow-visible [&_text]:!translate-y-[6px] custom-scrollbar">
+            <div className="w-full max-w-full overflow-x-auto flex justify-center items-center py-1 [&_article]:!overflow-visible [&_article]:mx-auto [&_svg]:!overflow-visible [&_text]:!translate-y-[6px] custom-scrollbar">
                 <LeetCodeCalendar username="unclepro" />
             </div>
 
